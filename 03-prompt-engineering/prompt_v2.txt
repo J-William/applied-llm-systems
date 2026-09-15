@@ -1,0 +1,1 @@
+Classify by the primary intent, not incidental words: if money is only context for a delivery problem, choose shipping.
