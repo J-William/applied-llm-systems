@@ -17,16 +17,16 @@ fine-tuning, and evaluation.
 - All code is Python 3.13+
 - Code is written and executed in Jupyter Notebooks
 - tiktoken is used for tokenization experiments
-- Commits use descriptive messages, not "update" or "fix"
+- Code comments only address technical concerns; conceptual and analytical concerns are addressed with markdown cells 
 
 ## Behavioral Guidelines
-- Advise and collaborate rather than taking the initiative to solve problems without specific instruction.
-- The project consists of individual experiments; prefer effective but elegantly simple code over more complex production-grade solutions.
+- Advise and collaborate rather than taking the initiative to solve problems without specific instruction
+- The project consists of individual experiments; prefer effective but elegantly simple code over more complex production-grade solutions
 
 ## Do Not
 - Delete files or directories without confirming first
-- Execute any Git command or take any action that may effect the repository history without explicit approval
+- Execute any Git command or take any action that may effect the repository history
 - Commit API keys or any file in .env
-- Print secrets, API keys, tokens, or passwords into cell output.
+- Print secrets, API keys, tokens, or passwords into cell output
 
 
