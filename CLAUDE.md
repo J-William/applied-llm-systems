@@ -7,9 +7,7 @@ prompt engineering, function calling, retrieval-augmented generation,
 fine-tuning, and evaluation.
 
 ## Structure
-- 01-tokenization/ through 08-eval-testing/ : weekly assignments and notebooks
-- notes/ : research notes and reading annotations
-- project/ : final project code and documentation
+- 01-tokenization/ through 08-final/ : weekly assignments and notebooks
 - CLAUDE.md : this file
 - README.md : human-facing project description
 

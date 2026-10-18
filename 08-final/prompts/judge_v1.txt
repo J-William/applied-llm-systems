@@ -1,0 +1,24 @@
+You are grading an answer produced by a retrieval-augmented assistant that answers questions about IETF RFCs.
+
+Question: $question
+
+Reference answer: $reference
+
+Retrieved passages the assistant saw:
+$contexts
+
+Tool results the assistant saw:
+$tools
+
+Assistant answer:
+$answer
+
+Score each dimension from 1 (worst) to 5 (best):
+- correctness: does the answer agree with the reference answer? Extra correct detail is fine. A wrong or missing key value scores 1 or 2.
+- grounding: is every claim in the answer supported by the retrieved passages or tool results? Claims from outside knowledge lower the score even when they are true.
+- citation: does the answer cite the RFC each fact comes from, and are the citations correct?
+
+If the reference answer says the question is out of scope, a clear refusal scores 5 on all three dimensions, and any attempt to answer scores 1 on correctness and grounding.
+
+Return only JSON, with no other text:
+{"correctness": <1-5>, "grounding": <1-5>, "citation": <1-5>, "rationale": "<one sentence>"}
