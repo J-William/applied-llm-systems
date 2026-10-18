@@ -1,0 +1,1663 @@
+{
+ "claude-haiku-5-5|v1|what character separates the date from the time in an internet timestamp": {
+  "q": "what character separates the date from the time in an internet timestamp",
+  "version": "v1",
+  "answer": "In RFC 3339 the date and time are separated by the uppercase letter \"T\" (taken from ISO 8601). For readability, applications may instead use a space character to separate a full-date and full-time [RFC 3339].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "RFC 3339 date and time separator character in internet date/time format"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 7519,
+       "text": "13.2. Informative References: [RFC3339] Klyne, G. and C. Newman, \"Date and Time on the Internet: Timestamps\", RFC 3339, DOI 10.17487/RFC3339, July 2002, <http://www.rfc-editor.org/info/rfc3339>."
+      },
+      {
+       "rfc": 3339,
+       "text": "5.6. Internet Date/Time Format: NOTE: ISO 8601 defines date and time separated by \"T\". Applications using this syntax may choose, for the sake of readability, to specify a full-date and full-time separated by (say) a space character."
+      },
+      {
+       "rfc": 3339,
+       "text": "5.6. Internet Date/Time Format: date-fullyear = 4DIGIT date-month = 2DIGIT ; 01-12 date-mday = 2DIGIT ; 01-28, 01-29, 01-30, 01-31 based on ; month/year time-hour = 2DIGIT ; 00-23 time-minute = 2DIGIT ; 00-59 time-second = 2DIGIT ; 00-58, 00-59, 00-60 based on leap second ; rules time-secfrac = \".\" 1*DIGIT time-numoffset = (\"+\" / \"-\") time-hour \":\" time-minute time-offset = \"Z\" / time-numoffset"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|how many characters does base64 produce for a 300-byte input": {
+  "q": "how many characters does base64 produce for a 300-byte input",
+  "version": "v1",
+  "answer": "Base64 produces 400 characters for a 300-byte input, with no \"=\" padding. The input is an exact multiple of 24 bits (3 bytes), so the output is an integral multiple of 4 characters [RFC 4648].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "Base64 encoding output length with padding characters for input octets"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (3) The final quantum of encoding input is exactly 16 bits; here, the final unit of encoded output will be three characters followed by one \"=\" padding character."
+      },
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (2) The final quantum of encoding input is exactly 8 bits; here, the final unit of encoded output will be two characters followed by two \"=\" padding characters."
+      },
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (1) The final quantum of encoding input is an integral multiple of 24 bits; here, the final unit of encoded output will be an integral multiple of 4 characters with no \"=\" padding."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "300 / 3 * 4"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 400.0
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|Which JWT claim marks the time on or after which the token must not be accepted?": {
+  "q": "Which JWT claim marks the time on or after which the token must not be accepted?",
+  "version": "v1",
+  "answer": "The JWT claim is \"exp\" (Expiration Time): it \"identifies the expiration time on or after which the JWT MUST NOT be accepted for processing\" [RFC 7519].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "JWT exp claim expiration time on or after which the JWT must not be accepted"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 7519,
+       "text": "4.1.4. \"exp\" (Expiration Time) Claim: The \"exp\" (expiration time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing. The processing of the \"exp\" claim requires that the current date/time MUST be before the expiration date/time listed in the \"exp\" claim."
+      },
+      {
+       "rfc": 7519,
+       "text": "4.1.5. \"nbf\" (Not Before) Claim: The \"nbf\" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the \"nbf\" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the \"nbf\" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL."
+      },
+      {
+       "rfc": 7519,
+       "text": "4.1.3. \"aud\" (Audience) Claim: The \"aud\" (audience) claim identifies the recipients that the JWT is intended for. Each principal intended to process the JWT MUST identify itself with a value in the audience claim. If the principal processing the claim does not identify itself with a value in the \"aud\" claim when this claim is present, then the JWT MUST be rejected. In the general case, the \"aud\" value is an array of case- sensitive strings, each containing a StringOrURI value. In the special case when the JWT has one audience, the \"aud\" value MAY be a single case-sensitive string containing a StringOrURI value. The interpretation of audience values is generally application specific. Use of this claim is OPTIONAL."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|What close status code does a WebSocket endpoint use when it receives a message too big to process?": {
+  "q": "What close status code does a WebSocket endpoint use when it receives a message too big to process?",
+  "version": "v1",
+  "answer": "A WebSocket endpoint uses close status code 1009 when it is terminating the connection because it has received a message that is too big for it to process [RFC 6455].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "WebSocket close status code message too big to process"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "7.1.7. Fail the WebSocket Connection: If _The WebSocket Connection is Established_ prior to the point where the endpoint is required to _Fail the WebSocket Connection_, the endpoint SHOULD send a Close frame with an appropriate status code (Section 7.4) before proceeding to _Close the WebSocket Connection_. An endpoint MAY omit sending a Close frame if it believes the other side is unlikely to be able to receive and process the Close frame, due to the nature of the error that led the WebSocket connection to fail in the first place. An endpoint MUST NOT continue to attempt to process data (including a responding Close frame) from the remote endpoint after being instructed to _Fail the WebSocket Connection_."
+      },
+      {
+       "rfc": 6455,
+       "text": "7.1.5. The WebSocket Connection Close Code: As defined in Sections 5.5.1 and 7.4, a Close control frame may contain a status code indicating a reason for closure. A closing of the WebSocket connection may be initiated by either endpoint, potentially simultaneously. _The WebSocket Connection Close Code_ is defined as the status code (Section 7.4) contained in the first Close control frame received by the application implementing this protocol. If this Close control frame contains no status code, _The WebSocket Connection Close Code_ is considered to be 1005. If _The WebSocket Connection is Closed_ and no Close control frame was received by the endpoint (such as could occur if the underlying transport connection is lost), _The WebSocket Connection Close Code_ is considered to be 1006."
+      },
+      {
+       "rfc": 6455,
+       "text": "7.1.5. The WebSocket Connection Close Code: Close frame and will not send further Close frames. Each endpoint will see the status code sent by the other end as _The WebSocket Connection Close Code_. As such, it is possible that the two endpoints may not agree on the value of _The WebSocket Connection Close Code_ in the case that both endpoints _Start the WebSocket Closing Handshake_ independently and at roughly the same time."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "1009 status code message too big to process"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "7.4.1. Defined Status Codes: 1009 indicates that an endpoint is terminating the connection because it has received a message that is too big for it to process."
+      },
+      {
+       "rfc": 6455,
+       "text": "7.4.1. Defined Status Codes: 1008 indicates that an endpoint is terminating the connection because it has received a message that violates its policy. This is a generic status code that can be returned when there is no other more suitable status code (e.g., 1003 or 1009) or if there is a need to hide specific details about the policy."
+      },
+      {
+       "rfc": 6455,
+       "text": "7.4.1. Defined Status Codes: 1009"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|Which cookie attribute keeps a cookie away from JavaScript and other non-HTTP APIs?": {
+  "q": "Which cookie attribute keeps a cookie away from JavaScript and other non-HTTP APIs?",
+  "version": "v1",
+  "answer": "The attribute is HttpOnly. It limits the cookie's scope to HTTP requests and tells the user agent to omit the cookie when providing access through \"non-HTTP\" APIs, such as a browser API that exposes cookies to scripts [RFC 6265].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "cookie attribute prevents access from JavaScript non-HTTP APIs"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "4.1.2.6. The HttpOnly Attribute: The HttpOnly attribute limits the scope of the cookie to HTTP requests. In particular, the attribute instructs the user agent to omit the cookie when providing access to cookies via \"non-HTTP\" APIs (such as a web browser API that exposes cookies to scripts)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6. If the domain-attribute is non-empty:: 10. If the cookie was received from a \"non-HTTP\" API and the cookie's http-only-flag is set, abort these steps and ignore the cookie entirely."
+      },
+      {
+       "rfc": 6265,
+       "text": "6. If the domain-attribute is non-empty:: 2. If the newly created cookie was received from a \"non-HTTP\" API and the old-cookie's http-only-flag is set, abort these steps and ignore the newly created cookie entirely."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|Are duplicate member names allowed in a JSON object?": {
+  "q": "Are duplicate member names allowed in a JSON object?",
+  "version": "v1",
+  "answer": "Duplicate member names are not strictly prohibited, but the names within an object SHOULD be unique [RFC 8259]. When they are not unique, the behavior of receiving software is unpredictable, and many implementations report only the last name/value pair [RFC 8259]. For JWT claims sets, however, the Claim Names MUST be unique, and parsers MUST either reject duplicates or keep only the lexically last one [RFC 7519].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "JSON object duplicate member names allowed uniqueness"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 7519,
+       "text": "4. JWT Claims: The JWT Claims Set represents a JSON object whose members are the claims conveyed by the JWT. The Claim Names within a JWT Claims Set MUST be unique; JWT parsers MUST either reject JWTs with duplicate Claim Names or use a JSON parser that returns only the lexically last duplicate member name, as specified in Section 15.12 (\"The JSON Object\") of ECMAScript 5.1 [ECMAScript]."
+      },
+      {
+       "rfc": 7519,
+       "text": "7.3. String Comparison Rules: The JSON rules for doing member name comparison are described in Section 8.3 of RFC 7159 [RFC7159]. Since the only string comparison operations that are performed are equality and inequality, the same rules can be used for comparing both member names and member values against known strings."
+      },
+      {
+       "rfc": 8259,
+       "text": "4. Objects: JSON parsing libraries have been observed to differ as to whether or not they make the ordering of object members visible to calling software. Implementations whose behavior does not depend on member ordering will be interoperable in the sense that they will not be affected by these differences."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "names within an object SHOULD be unique"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 8259,
+       "text": "4. Objects: An object structure is represented as a pair of curly brackets surrounding zero or more name/value pairs (or members). A name is a string. A single colon comes after each name, separating the name from the value. A single comma separates a value from a following name. The names within an object SHOULD be unique."
+      },
+      {
+       "rfc": 8259,
+       "text": "4. Objects: An object whose names are all unique is interoperable in the sense that all software implementations receiving that object will agree on the name-value mappings. When the names within an object are not unique, the behavior of software that receives such an object is unpredictable. Many implementations report the last name/value pair only. Other implementations report an error or fail to parse the"
+      },
+      {
+       "rfc": 7519,
+       "text": "2. Terminology: Collision-Resistant Name A name in a namespace that enables names to be allocated in a manner such that they are highly unlikely to collide with other names. Examples of collision-resistant namespaces include: Domain Names, Object Identifiers (OIDs) as defined in the ITU-T X.660 and X.670 Recommendation series, and Universally Unique IDentifiers (UUIDs) [RFC4122]. When using an administratively delegated namespace, the definer of a name needs to take reasonable precautions to ensure they are in control of the portion of the namespace they use to define the name."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|How should a client send an OAuth bearer token in an HTTP request header?": {
+  "q": "How should a client send an OAuth bearer token in an HTTP request header?",
+  "version": "v1",
+  "answer": "Clients SHOULD send the bearer token in the \"Authorization\" request header field using the \"Bearer\" authentication scheme, and resource servers MUST support this method [RFC 6750]. The client uses the \"Bearer\" scheme to transmit the access token in that header, as defined for HTTP/1.1 [RFC 6750].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "OAuth 2.0 bearer token sent in Authorization request header field"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6750,
+       "text": "1. Introduction: resulting from OAuth 2.0 authorization [RFC6749] flows to access OAuth protected resources, this specification actually defines a general HTTP authorization method that can be used with bearer tokens from any source to access any resources protected by those bearer tokens. The Bearer authentication scheme is intended primarily for server authentication using the WWW-Authenticate and Authorization HTTP headers but does not preclude its use for proxy authentication."
+      },
+      {
+       "rfc": 6750,
+       "text": "2.1. Authorization Request Header Field: Clients SHOULD make authenticated requests with a bearer token using the \"Authorization\" request header field with the \"Bearer\" HTTP authorization scheme. Resource servers MUST support this method."
+      },
+      {
+       "rfc": 6750,
+       "text": "2.1. Authorization Request Header Field: When sending the access token in the \"Authorization\" request header field defined by HTTP/1.1 [RFC2617], the client uses the \"Bearer\" authentication scheme to transmit the access token."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|Can the seconds field of an RFC 3339 timestamp ever be 60?": {
+  "q": "Can the seconds field of an RFC 3339 timestamp ever be 60?",
+  "version": "v1",
+  "answer": "Yes, but only during a leap second. The grammar allows \"60\" at the end of months where a leap second occurs, such as XXXX-06-30T23:59:60Z or XXXX-12-31T23:59:60Z [RFC 3339]. At all other times the maximum is \"59\", or \"58\" if a leap second is subtracted [RFC 3339].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "RFC 3339 seconds field range leap second 60"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 3339,
+       "text": "Appendix D. Leap Seconds: When required, insertion of a leap second occurs as an extra second at the end of a day in UTC, represented by a timestamp of the form YYYY-MM-DDT23:59:60Z. A leap second occurs simultaneously in all time zones, so that time zone relationships are not affected. See section 5.8 for some examples of leap second times."
+      },
+      {
+       "rfc": 3339,
+       "text": "Appendix C contains sample C code to determine if a year is a leap year.: The grammar element time-second may have the value \"60\" at the end of months in which a leap second occurs -- to date: June (XXXX-06- 30T23:59:60Z) or December (XXXX-12-31T23:59:60Z); see Appendix D for a table of leap seconds. It is also possible for a leap second to be subtracted, at which times the maximum value of time-second is \"58\". At all other times the maximum value of time-second is \"59\". Further, in time zones other than \"Z\", the leap second point is shifted by the zone offset (so it happens at the same instant around the globe)."
+      },
+      {
+       "rfc": 3339,
+       "text": "Appendix D. Leap Seconds: The decision to introduce a leap second in UTC is the responsibility of the International Earth Rotation Service (IERS). According to the CCIR Recommendation, first preference is given to the opportunities at the end of December and June, and second preference to those at the end of March and September."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|What is the value of the Nil UUID?": {
+  "q": "What is the value of the Nil UUID?",
+  "version": "v1",
+  "answer": "The Nil UUID is a special UUID form with all 128 bits set to zero [RFC 9562]. It can be used to express \"no such value here\" in situations that otherwise require a UUID [RFC 9562].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "Nil UUID value all zeros"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 9562,
+       "text": "5.9. Nil UUID: The Nil UUID is special form of UUID that is specified to have all 128 bits set to zero."
+      },
+      {
+       "rfc": 9562,
+       "text": "5.9. Nil UUID: A Nil UUID value can be useful to communicate the absence of any other UUID value in situations that otherwise require or use a 128-bit UUID. A Nil UUID can express the concept \"no such value here\". Thus, it is reserved for such use as needed for implementation-specific situations."
+      },
+      {
+       "rfc": 9562,
+       "text": "5.9. Nil UUID: Note that the Nil UUID value falls within the range of the Apollo NCS variant as per the first row of Table 1 rather than the variant defined by this document."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|When base64 encoding, what padding is added if the final input quantum is only 8 bits?": {
+  "q": "When base64 encoding, what padding is added if the final input quantum is only 8 bits?",
+  "version": "v1",
+  "answer": "If the final quantum of Base64 input is exactly 8 bits, the final output unit is two characters followed by two \"=\" padding characters [RFC 4648].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "base64 padding when final input group is only 8 bits"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (2) The final quantum of encoding input is exactly 8 bits; here, the final unit of encoded output will be two characters followed by two \"=\" padding characters."
+      },
+      {
+       "rfc": 4648,
+       "text": "6. Base 32 Encoding: (2) The final quantum of encoding input is exactly 8 bits; here, the final unit of encoded output will be two characters followed by six \"=\" padding characters."
+      },
+      {
+       "rfc": 4648,
+       "text": "6. Base 32 Encoding: (1) The final quantum of encoding input is an integral multiple of 40 bits; here, the final unit of encoded output will be an integral multiple of 8 characters with no \"=\" padding."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|How many characters long is the base64 encoding of a 1000-byte input, including padding?": {
+  "q": "How many characters long is the base64 encoding of a 1000-byte input, including padding?",
+  "version": "v1",
+  "answer": "The base64 encoding of a 1000-byte input is 1336 characters including padding. RFC 4648 says a final quantum of exactly 8 bits becomes two characters plus two \"=\" padding characters, and an integral multiple of 24 bits gives no padding [RFC 4648]. Since 1000 bytes leaves one byte over after 333 full 3-byte groups, the output is 333 \u00d7 4 + 4 = 1336 characters.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "Base64 encoding output length with padding for input octets"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (3) The final quantum of encoding input is exactly 16 bits; here, the final unit of encoded output will be three characters followed by one \"=\" padding character."
+      },
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (1) The final quantum of encoding input is an integral multiple of 24 bits; here, the final unit of encoded output will be an integral multiple of 4 characters with no \"=\" padding."
+      },
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (2) The final quantum of encoding input is exactly 8 bits; here, the final unit of encoded output will be two characters followed by two \"=\" padding characters."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "((1000 + 2) // 3) * 4"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 1336
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|What is the largest WebSocket payload length that can be expressed with the 16-bit extended payload length field?": {
+  "q": "What is the largest WebSocket payload length that can be expressed with the 16-bit extended payload length field?",
+  "version": "v1",
+  "answer": "The largest payload length expressible with the 16-bit extended length field is 65535 bytes, since the field is a 16-bit unsigned integer [RFC 6455]. The field is used for lengths from 126 upward, with the minimal-encoding rule applying [RFC 6455].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "WebSocket 16-bit extended payload length field range"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "5.2. Base Framing Protocol: The length of the \"Payload data\", in bytes: if 0-125, that is the payload length. If 126, the following 2 bytes interpreted as a 16-bit unsigned integer are the payload length. If 127, the following 8 bytes interpreted as a 64-bit unsigned integer (the most significant bit MUST be 0) are the payload length. Multibyte length quantities are expressed in network byte order. Note that in all cases, the minimal number of bytes MUST be used to encode the length, for example, the length of a 124-byte-long string can't be encoded as the sequence 126, 0, 124. The payload length is the length of the \"Extension data\" + the length of the \"Application data\". The length of the \"Extension data\" may be zero, in which case the payload length is the length of the \"Application data\"."
+      },
+      {
+       "rfc": 6455,
+       "text": "2. A |Host| header field containing the server's authority.: 5. A |Sec-WebSocket-Key| header field with a base64-encoded (see Section 4 of [RFC4648]) value that, when decoded, is 16 bytes in length."
+      },
+      {
+       "rfc": 6455,
+       "text": "4. Establish the following information:: /key/ The |Sec-WebSocket-Key| header field in the client's handshake includes a base64-encoded value that, if decoded, is 16 bytes in length. This (encoded) value is used in the creation of the server's handshake to indicate an acceptance of the connection. It is not necessary for the server to base64- decode the |Sec-WebSocket-Key| value."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "2**16 - 1"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 65535
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v1",
+  "answer": "This is not covered by the indexed RFCs.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should support"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "8.6. Weak Integrity: Finally, an attacker might be able to force the user agent to delete cookies by storing a large number of cookies. Once the user agent reaches its storage limit, the user agent will be forced to evict some cookies. Servers SHOULD NOT rely upon user agents retaining cookies."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "cookie storage limits per domain user agent should be able to store at least"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      },
+      {
+       "rfc": 6265,
+       "text": "8.6. Weak Integrity: Finally, an attacker might be able to force the user agent to delete cookies by storing a large number of cookies. Once the user agent reaches its storage limit, the user agent will be forced to evict some cookies. Servers SHOULD NOT rely upon user agents retaining cookies."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "total cookie size in bytes allowed for a domain or per domain storage minimum"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 3000 cookies total."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|Roughly how many years after 1970 can the UUIDv7 millisecond timestamp represent before it overflows?": {
+  "q": "Roughly how many years after 1970 can the UUIDv7 millisecond timestamp represent before it overflows?",
+  "version": "v1",
+  "answer": "The UUIDv7 timestamp is a 48-bit big-endian count of Unix Epoch milliseconds in bits 0\u201347 [RFC 9562]. That gives 2^48 ms, about 8,920 years of range from 1970, so it overflows around the year 10890 (my calculation, using the Gregorian average year, not a figure stated in the RFC).",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "UUIDv7 unix_ts_ms 48-bit millisecond timestamp field size"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 9562,
+       "text": "3. Random data for each new UUIDv7 generated for any remaining space.: unix_ts_ms: 48-bit big-endian unsigned number of the Unix Epoch timestamp in milliseconds as per Section 6.1. Occupies bits 0 through 47 (octets 0-5)."
+      },
+      {
+       "rfc": 9562,
+       "text": "5.7. UUID Version 7: UUIDv7 values are created by allocating a Unix timestamp in milliseconds in the most significant 48 bits and filling the remaining 74 bits, excluding the required version and variant bits, with random bits for each new UUIDv7 generated to provide uniqueness as per Section 6.9. Alternatively, implementations MAY fill the 74 bits, jointly, with a combination of the following subfields, in this order from the most significant bits to the least, to guarantee additional monotonicity within a millisecond:"
+      },
+      {
+       "rfc": 9562,
+       "text": "Appendix A. Test Vectors: This example UUIDv7 test vector utilizes a well-known Unix Epoch timestamp with millisecond precision to fill the first 48 bits."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "2**48 / 1000 / 86400 / 365.2425"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 8919.586933194816
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|What is the default TCP port for a Redis server?": {
+  "q": "What is the default TCP port for a Redis server?",
+  "version": "v1",
+  "answer": "This is not covered by the indexed RFCs.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "default TCP port for a Redis server"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "3. WebSocket URIs: The port component is OPTIONAL; the default for \"ws\" is port 80, while the default for \"wss\" is port 443."
+      },
+      {
+       "rfc": 6455,
+       "text": "1.7. Relationship to TCP and HTTP: By default, the WebSocket Protocol uses port 80 for regular WebSocket connections and port 443 for WebSocket connections tunneled over Transport Layer Security (TLS) [RFC2818]."
+      },
+      {
+       "rfc": 6455,
+       "text": "4.1. Client Requirements: If the client is not configured to use a proxy, then a direct TCP connection SHOULD be opened to the host given by /host/ and the port given by /port/."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|How does HTTP/2 HPACK encode integers in header blocks?": {
+  "q": "How does HTTP/2 HPACK encode integers in header blocks?",
+  "version": "v1",
+  "answer": "This is not covered by the indexed RFCs.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "HPACK integer representation encoding in header blocks"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: The Base 64 encoding is designed to represent arbitrary sequences of octets in a form that allows the use of both upper- and lowercase letters but that need not be human readable."
+      },
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: Value Encoding Value Encoding Value Encoding Value Encoding 0 A 17 R 34 i 51 z 1 B 18 S 35 j 52 0 2 C 19 T 36 k 53 1 3 D 20 U 37 l 54 2 4 E 21 V 38 m 55 3 5 F 22 W 39 n 56 4 6 G 23 X 40 o 57 5 7 H 24 Y 41 p 58 6 8 I 25 Z 42 q 59 7 9 J 26 a 43 r 60 8 10 K 27 b 44 s 61 9 11 L 28 c 45 t 62 + 12 M 29 d 46 u 63 / 13 N 30 e 47 v 14 O 31 f 48 w (pad) = 15 P 32 g 49 x 16 Q 33 h 50 y"
+      },
+      {
+       "rfc": 4648,
+       "text": "6. Base 32 Encoding: Value Encoding Value Encoding Value Encoding Value Encoding 0 A 9 J 18 S 27 3 1 B 10 K 19 T 28 4 2 C 11 L 20 U 29 5 3 D 12 M 21 V 30 6 4 E 13 N 22 W 31 7 5 F 14 O 23 X 6 G 15 P 24 Y (pad) = 7 H 16 Q 25 Z 8 I 17 R 26 2"
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "HPACK prefix integer encoding HTTP/2 header compression"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: Value Encoding Value Encoding Value Encoding Value Encoding 0 A 17 R 34 i 51 z 1 B 18 S 35 j 52 0 2 C 19 T 36 k 53 1 3 D 20 U 37 l 54 2 4 E 21 V 38 m 55 3 5 F 22 W 39 n 56 4 6 G 23 X 40 o 57 5 7 H 24 Y 41 p 58 6 8 I 25 Z 42 q 59 7 9 J 26 a 43 r 60 8 10 K 27 b 44 s 61 9 11 L 28 c 45 t 62 + 12 M 29 d 46 u 63 / 13 N 30 e 47 v 14 O 31 f 48 w (pad) = 15 P 32 g 49 x 16 Q 33 h 50 y"
+      },
+      {
+       "rfc": 4648,
+       "text": "5. Base 64 Encoding with URL and Filename Safe Alphabet: Value Encoding Value Encoding Value Encoding Value Encoding 0 A 17 R 34 i 51 z 1 B 18 S 35 j 52 0 2 C 19 T 36 k 53 1 3 D 20 U 37 l 54 2 4 E 21 V 38 m 55 3 5 F 22 W 39 n 56 4 6 G 23 X 40 o 57 5 7 H 24 Y 41 p 58 6 8 I 25 Z 42 q 59 7 9 J 26 a 43 r 60 8 10 K 27 b 44 s 61 9 11 L 28 c 45 t 62 - (minus) 12 M 29 d 46 u 63 _ 13 N 30 e 47 v (underline) 14 O 31 f 48 w 15 P 32 g 49 x 16 Q 33 h 50 y (pad) ="
+      },
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (2) The final quantum of encoding input is exactly 8 bits; here, the final unit of encoded output will be two characters followed by two \"=\" padding characters."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|What is the maximum size of a single TLS 1.3 record?": {
+  "q": "What is the maximum size of a single TLS 1.3 record?",
+  "version": "v1",
+  "answer": "This is not covered by the indexed RFCs.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "maximum size of a single TLS 1.3 record"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6750,
+       "text": "7.1. Normative References: [RFC5246] Dierks, T. and E. Rescorla, \"The Transport Layer Security (TLS) Protocol Version 1.2\", RFC 5246, August 2008."
+      },
+      {
+       "rfc": 6455,
+       "text": "10.4. Implementation-Specific Limits: Implementations that have implementation- and/or platform-specific limitations regarding the frame size or total message size after reassembly from multiple frames MUST protect themselves against exceeding those limits. (For example, a malicious endpoint can try to exhaust its peer's memory or mount a denial-of-service attack by sending either a single big frame (e.g., of size 2**60) or by sending a long stream of small frames that are a part of a fragmented message.) Such an implementation SHOULD impose a limit on frame sizes and the total message size after reassembly from multiple frames."
+      },
+      {
+       "rfc": 6455,
+       "text": "14.1. Normative References: [RFC5246] Dierks, T. and E. Rescorla, \"The Transport Layer Security (TLS) Protocol Version 1.2\", RFC 5246, August 2008."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "TLS record layer plaintext fragment length 2^14 limit"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "14.1. Normative References: [RFC5246] Dierks, T. and E. Rescorla, \"The Transport Layer Security (TLS) Protocol Version 1.2\", RFC 5246, August 2008."
+      },
+      {
+       "rfc": 6455,
+       "text": "14.1. Normative References: [RFC6066] Eastlake, D., \"Transport Layer Security (TLS) Extensions: Extension Definitions\", RFC 6066, January 2011."
+      },
+      {
+       "rfc": 6750,
+       "text": "7.1. Normative References: [RFC5246] Dierks, T. and E. Rescorla, \"The Transport Layer Security (TLS) Protocol Version 1.2\", RFC 5246, August 2008."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?|trial 1": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v1",
+  "answer": "RFC 6265 does not give a minimum total byte count for a single domain. It sets a minimum of 4096 bytes per cookie (measured as the name, value, and attributes) and at least 50 cookies per domain [RFC 6265]. Multiplying those two figures gives 204,800 bytes, but that is only an implied upper bound on what the two limits together require, not a stated requirement.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should be able to store for a single domain"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "50 * 4096"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 204800
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?|trial 2": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v1",
+  "answer": "RFC 6265 does not give a per-domain byte total. It sets a minimum of 4096 bytes per cookie, measured as the name, value, and attributes together, and a minimum of 50 cookies per domain [RFC 6265]. General-use user agents SHOULD support these minimums [RFC 6265].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should support per domain"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?|trial 3": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v1",
+  "answer": "The RFC does not give a per-domain byte total. It says general-use user agents SHOULD support at least 4096 bytes per cookie (name, value, and attributes combined) and at least 50 cookies per domain [RFC 6265]. Taken together those imply a floor, but the RFC does not state an aggregate byte minimum for a domain.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should support per domain"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v1|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?|trial 4": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v1",
+  "answer": "RFC 6265 does not give a minimum total byte size for all cookies on one domain. It sets a minimum of 4096 bytes per cookie (name, value, and attributes combined) and at least 50 cookies per domain [RFC 6265]. Taken together, those imply roughly 204,800 bytes (4096 \u00d7 50), but that is a derived figure, not a stated requirement.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should be able to store per domain"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "4096 * 50"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 204800
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v2",
+  "answer": "RFC 6265 does not state a total byte minimum per domain. It says general-use user agents SHOULD support at least 50 cookies per domain and at least 4096 bytes per cookie [RFC 6265]. Taken together, that implies a capacity of 50 \u00d7 4096 = 204,800 bytes per domain, though this product is my derivation rather than a figure the RFC gives.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of cookies per domain user agent should be able to store, minimum size of cookie in bytes"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "50 * 4096"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 204800
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?|trial 1": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v2",
+  "answer": "The RFC does not state a total byte minimum for one domain. It sets a minimum of 4096 bytes per cookie (name, value, and attributes combined) and at least 50 cookies per domain [RFC 6265]. Multiplying those gives 50 \u00d7 4096 = 204,800 bytes, which is the implied capacity if every cookie reaches the per-cookie minimum.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should be able to store for a single domain"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "50 * 4096"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 204800
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?|trial 2": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v2",
+  "answer": "RFC 6265 does not state a per-domain byte total. It says general-use user agents SHOULD support at least 4096 bytes per cookie and at least 50 cookies per domain [RFC 6265]. Multiplying those values (50 \u00d7 4096) gives 204,800 bytes, which is a derived figure, not one the RFC states directly.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should be able to store per domain"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "50 * 4096"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 204800
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?|trial 3": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v2",
+  "answer": "RFC 6265 does not state a per-domain byte total. It requires general-use user agents to support at least 4096 bytes per cookie (measured as name, value, and attributes) and at least 50 cookies per domain [RFC 6265]. Combining these gives 50 \u00d7 4096 = 204,800 bytes, which is an implied figure rather than a stated requirement.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should be able to store per domain"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "50 * 4096"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 204800
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?|trial 4": {
+  "q": "At minimum, how many bytes of cookies for a single domain should a general-use user agent be able to store?",
+  "version": "v2",
+  "answer": "RFC 6265 does not state a total byte minimum per domain. It says general-use user agents should support at least 4096 bytes per cookie and at least 50 cookies per domain [RFC 6265]. Combining these gives 50 \u00d7 4096 = 204,800 bytes, which is an upper bound on the per-domain total implied by those two limits, not a figure the RFC gives directly.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "minimum number of bytes per cookie user agent should be able to store per domain"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: Practical user agent implementations have limits on the number and size of cookies that they can store. General-use user agents SHOULD provide each of the following minimum capabilities:"
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 4096 bytes per cookie (as measured by the sum of the length of the cookie's name, value, and attributes)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6.1. Limits: o At least 50 cookies per domain."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "50 * 4096"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 204800
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|Which JWT claim marks the time on or after which the token must not be accepted?": {
+  "q": "Which JWT claim marks the time on or after which the token must not be accepted?",
+  "version": "v2",
+  "answer": "The JWT \"exp\" (Expiration Time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing [RFC 7519].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "JWT exp claim expiration time on or after which token must not be accepted"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 7519,
+       "text": "4.1.4. \"exp\" (Expiration Time) Claim: The \"exp\" (expiration time) claim identifies the expiration time on or after which the JWT MUST NOT be accepted for processing. The processing of the \"exp\" claim requires that the current date/time MUST be before the expiration date/time listed in the \"exp\" claim."
+      },
+      {
+       "rfc": 7519,
+       "text": "4.1.5. \"nbf\" (Not Before) Claim: The \"nbf\" (not before) claim identifies the time before which the JWT MUST NOT be accepted for processing. The processing of the \"nbf\" claim requires that the current date/time MUST be after or equal to the not-before date/time listed in the \"nbf\" claim. Implementers MAY provide for some small leeway, usually no more than a few minutes, to account for clock skew. Its value MUST be a number containing a NumericDate value. Use of this claim is OPTIONAL."
+      },
+      {
+       "rfc": 7519,
+       "text": "4.1.3. \"aud\" (Audience) Claim: The \"aud\" (audience) claim identifies the recipients that the JWT is intended for. Each principal intended to process the JWT MUST identify itself with a value in the audience claim. If the principal processing the claim does not identify itself with a value in the \"aud\" claim when this claim is present, then the JWT MUST be rejected. In the general case, the \"aud\" value is an array of case- sensitive strings, each containing a StringOrURI value. In the special case when the JWT has one audience, the \"aud\" value MAY be a single case-sensitive string containing a StringOrURI value. The interpretation of audience values is generally application specific. Use of this claim is OPTIONAL."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|What close status code does a WebSocket endpoint use when it receives a message too big to process?": {
+  "q": "What close status code does a WebSocket endpoint use when it receives a message too big to process?",
+  "version": "v2",
+  "answer": "A WebSocket endpoint that receives a message too big to process uses close status code 1009 [RFC 6455]. Per RFC 6455, 1009 means the endpoint is terminating the connection because the message is too big for it to process.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "WebSocket close status code message too big to process"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "7.1.7. Fail the WebSocket Connection: If _The WebSocket Connection is Established_ prior to the point where the endpoint is required to _Fail the WebSocket Connection_, the endpoint SHOULD send a Close frame with an appropriate status code (Section 7.4) before proceeding to _Close the WebSocket Connection_. An endpoint MAY omit sending a Close frame if it believes the other side is unlikely to be able to receive and process the Close frame, due to the nature of the error that led the WebSocket connection to fail in the first place. An endpoint MUST NOT continue to attempt to process data (including a responding Close frame) from the remote endpoint after being instructed to _Fail the WebSocket Connection_."
+      },
+      {
+       "rfc": 6455,
+       "text": "7.1.5. The WebSocket Connection Close Code: As defined in Sections 5.5.1 and 7.4, a Close control frame may contain a status code indicating a reason for closure. A closing of the WebSocket connection may be initiated by either endpoint, potentially simultaneously. _The WebSocket Connection Close Code_ is defined as the status code (Section 7.4) contained in the first Close control frame received by the application implementing this protocol. If this Close control frame contains no status code, _The WebSocket Connection Close Code_ is considered to be 1005. If _The WebSocket Connection is Closed_ and no Close control frame was received by the endpoint (such as could occur if the underlying transport connection is lost), _The WebSocket Connection Close Code_ is considered to be 1006."
+      },
+      {
+       "rfc": 6455,
+       "text": "7.1.5. The WebSocket Connection Close Code: Close frame and will not send further Close frames. Each endpoint will see the status code sent by the other end as _The WebSocket Connection Close Code_. As such, it is possible that the two endpoints may not agree on the value of _The WebSocket Connection Close Code_ in the case that both endpoints _Start the WebSocket Closing Handshake_ independently and at roughly the same time."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "status code 1009 message too big"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "7.4.1. Defined Status Codes: 1009 indicates that an endpoint is terminating the connection because it has received a message that is too big for it to process."
+      },
+      {
+       "rfc": 6455,
+       "text": "7.4.1. Defined Status Codes: 1008 indicates that an endpoint is terminating the connection because it has received a message that violates its policy. This is a generic status code that can be returned when there is no other more suitable status code (e.g., 1003 or 1009) or if there is a need to hide specific details about the policy."
+      },
+      {
+       "rfc": 6455,
+       "text": "7.4.1. Defined Status Codes: 1007 indicates that an endpoint is terminating the connection because it has received data within a message that was not consistent with the type of the message (e.g., non-UTF-8 [RFC3629] data within a text message)."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|Which cookie attribute keeps a cookie away from JavaScript and other non-HTTP APIs?": {
+  "q": "Which cookie attribute keeps a cookie away from JavaScript and other non-HTTP APIs?",
+  "version": "v2",
+  "answer": "The attribute is HttpOnly. It \"limits the scope of the cookie to HTTP requests\" and instructs the user agent to omit the cookie when providing access through \"non-HTTP\" APIs, such as a browser API that exposes cookies to scripts [RFC 6265].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "cookie attribute HttpOnly prevents access from non-HTTP APIs such as JavaScript"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6265,
+       "text": "4.1.2.6. The HttpOnly Attribute: The HttpOnly attribute limits the scope of the cookie to HTTP requests. In particular, the attribute instructs the user agent to omit the cookie when providing access to cookies via \"non-HTTP\" APIs (such as a web browser API that exposes cookies to scripts)."
+      },
+      {
+       "rfc": 6265,
+       "text": "8.5. Weak Confidentiality: Cookies do not provide isolation by scheme. Although most commonly used with the http and https schemes, the cookies for a given host might also be available to other schemes, such as ftp and gopher. Although this lack of isolation by scheme is most apparent in non- HTTP APIs that permit access to cookies (e.g., HTML's document.cookie API), the lack of isolation by scheme is actually present in requirements for processing cookies themselves (e.g., consider retrieving a URI with the gopher scheme via HTTP)."
+      },
+      {
+       "rfc": 6265,
+       "text": "6. If the domain-attribute is non-empty:: 10. If the cookie was received from a \"non-HTTP\" API and the cookie's http-only-flag is set, abort these steps and ignore the cookie entirely."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|Are duplicate member names allowed in a JSON object?": {
+  "q": "Are duplicate member names allowed in a JSON object?",
+  "version": "v2",
+  "answer": "Duplicate member names are not forbidden in JSON, but the names within an object SHOULD be unique [RFC 8259]. When they are not, behavior is unpredictable, and many implementations report only the last name/value pair while others report an error or fail to parse [RFC 8259]. JWT claim names, by contrast, MUST be unique, and parsers must either reject duplicates or keep only the lexically last one [RFC 7519].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "JSON object duplicate member names uniqueness"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 7519,
+       "text": "4. JWT Claims: The JWT Claims Set represents a JSON object whose members are the claims conveyed by the JWT. The Claim Names within a JWT Claims Set MUST be unique; JWT parsers MUST either reject JWTs with duplicate Claim Names or use a JSON parser that returns only the lexically last duplicate member name, as specified in Section 15.12 (\"The JSON Object\") of ECMAScript 5.1 [ECMAScript]."
+      },
+      {
+       "rfc": 7519,
+       "text": "7.3. String Comparison Rules: The JSON rules for doing member name comparison are described in Section 8.3 of RFC 7159 [RFC7159]. Since the only string comparison operations that are performed are equality and inequality, the same rules can be used for comparing both member names and member values against known strings."
+      },
+      {
+       "rfc": 8259,
+       "text": "4. Objects: JSON parsing libraries have been observed to differ as to whether or not they make the ordering of object members visible to calling software. Implementations whose behavior does not depend on member ordering will be interoperable in the sense that they will not be affected by these differences."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "names within an object SHOULD be unique"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 8259,
+       "text": "4. Objects: An object structure is represented as a pair of curly brackets surrounding zero or more name/value pairs (or members). A name is a string. A single colon comes after each name, separating the name from the value. A single comma separates a value from a following name. The names within an object SHOULD be unique."
+      },
+      {
+       "rfc": 8259,
+       "text": "4. Objects: An object whose names are all unique is interoperable in the sense that all software implementations receiving that object will agree on the name-value mappings. When the names within an object are not unique, the behavior of software that receives such an object is unpredictable. Many implementations report the last name/value pair only. Other implementations report an error or fail to parse the"
+      },
+      {
+       "rfc": 7519,
+       "text": "2. Terminology: Collision-Resistant Name A name in a namespace that enables names to be allocated in a manner such that they are highly unlikely to collide with other names. Examples of collision-resistant namespaces include: Domain Names, Object Identifiers (OIDs) as defined in the ITU-T X.660 and X.670 Recommendation series, and Universally Unique IDentifiers (UUIDs) [RFC4122]. When using an administratively delegated namespace, the definer of a name needs to take reasonable precautions to ensure they are in control of the portion of the namespace they use to define the name."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|How should a client send an OAuth bearer token in an HTTP request header?": {
+  "q": "How should a client send an OAuth bearer token in an HTTP request header?",
+  "version": "v2",
+  "answer": "Clients SHOULD send the bearer token in the \"Authorization\" request header field using the \"Bearer\" HTTP authorization scheme, and resource servers MUST support this method [RFC 6750]. The client transmits the access token under the \"Bearer\" scheme in that header [RFC 6750].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "OAuth bearer token sent in HTTP Authorization request header"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6750,
+       "text": "1. Introduction: resulting from OAuth 2.0 authorization [RFC6749] flows to access OAuth protected resources, this specification actually defines a general HTTP authorization method that can be used with bearer tokens from any source to access any resources protected by those bearer tokens. The Bearer authentication scheme is intended primarily for server authentication using the WWW-Authenticate and Authorization HTTP headers but does not preclude its use for proxy authentication."
+      },
+      {
+       "rfc": 6750,
+       "text": "2.1. Authorization Request Header Field: Clients SHOULD make authenticated requests with a bearer token using the \"Authorization\" request header field with the \"Bearer\" HTTP authorization scheme. Resource servers MUST support this method."
+      },
+      {
+       "rfc": 6750,
+       "text": "2.1. Authorization Request Header Field: When sending the access token in the \"Authorization\" request header field defined by HTTP/1.1 [RFC2617], the client uses the \"Bearer\" authentication scheme to transmit the access token."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|Can the seconds field of an RFC 3339 timestamp ever be 60?": {
+  "q": "Can the seconds field of an RFC 3339 timestamp ever be 60?",
+  "version": "v2",
+  "answer": "Yes, but only at a leap second. RFC 3339 says the time-second may be \"60\" at the end of a month in which a leap second occurs, such as XXXX-06-30T23:59:60Z or XXXX-12-31T23:59:60Z [RFC 3339]. At all other times the maximum is \"59\", or \"58\" when a leap second is subtracted [RFC 3339].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "RFC 3339 seconds field range leap second 60"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 3339,
+       "text": "Appendix D. Leap Seconds: When required, insertion of a leap second occurs as an extra second at the end of a day in UTC, represented by a timestamp of the form YYYY-MM-DDT23:59:60Z. A leap second occurs simultaneously in all time zones, so that time zone relationships are not affected. See section 5.8 for some examples of leap second times."
+      },
+      {
+       "rfc": 3339,
+       "text": "Appendix C contains sample C code to determine if a year is a leap year.: The grammar element time-second may have the value \"60\" at the end of months in which a leap second occurs -- to date: June (XXXX-06- 30T23:59:60Z) or December (XXXX-12-31T23:59:60Z); see Appendix D for a table of leap seconds. It is also possible for a leap second to be subtracted, at which times the maximum value of time-second is \"58\". At all other times the maximum value of time-second is \"59\". Further, in time zones other than \"Z\", the leap second point is shifted by the zone offset (so it happens at the same instant around the globe)."
+      },
+      {
+       "rfc": 3339,
+       "text": "Appendix D. Leap Seconds: The decision to introduce a leap second in UTC is the responsibility of the International Earth Rotation Service (IERS). According to the CCIR Recommendation, first preference is given to the opportunities at the end of December and June, and second preference to those at the end of March and September."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|What is the value of the Nil UUID?": {
+  "q": "What is the value of the Nil UUID?",
+  "version": "v2",
+  "answer": "The Nil UUID is a special UUID form with all 128 bits set to zero [RFC 9562]. It can be used to express \"no such value here\" in situations that otherwise require a UUID [RFC 9562].",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "Nil UUID value all zeros"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 9562,
+       "text": "5.9. Nil UUID: The Nil UUID is special form of UUID that is specified to have all 128 bits set to zero."
+      },
+      {
+       "rfc": 9562,
+       "text": "5.9. Nil UUID: A Nil UUID value can be useful to communicate the absence of any other UUID value in situations that otherwise require or use a 128-bit UUID. A Nil UUID can express the concept \"no such value here\". Thus, it is reserved for such use as needed for implementation-specific situations."
+      },
+      {
+       "rfc": 9562,
+       "text": "5.9. Nil UUID: Note that the Nil UUID value falls within the range of the Apollo NCS variant as per the first row of Table 1 rather than the variant defined by this document."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|When base64 encoding, what padding is added if the final input quantum is only 8 bits?": {
+  "q": "When base64 encoding, what padding is added if the final input quantum is only 8 bits?",
+  "version": "v2",
+  "answer": "If the final quantum of Base64 input is exactly 8 bits, the final output unit is two characters followed by two \"=\" padding characters [RFC 4648]. (For Base32, the same 8-bit case gives two characters followed by six \"=\" padding characters [RFC 4648].)",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "base64 encoding final quantum of 8 bits padding characters"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (2) The final quantum of encoding input is exactly 8 bits; here, the final unit of encoded output will be two characters followed by two \"=\" padding characters."
+      },
+      {
+       "rfc": 4648,
+       "text": "6. Base 32 Encoding: (2) The final quantum of encoding input is exactly 8 bits; here, the final unit of encoded output will be two characters followed by six \"=\" padding characters."
+      },
+      {
+       "rfc": 4648,
+       "text": "6. Base 32 Encoding: (1) The final quantum of encoding input is an integral multiple of 40 bits; here, the final unit of encoded output will be an integral multiple of 8 characters with no \"=\" padding."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|How many characters long is the base64 encoding of a 1000-byte input, including padding?": {
+  "q": "How many characters long is the base64 encoding of a 1000-byte input, including padding?",
+  "version": "v2",
+  "answer": "The base64 encoding of a 1000-byte input is 1336 characters long, including padding. RFC 4648 says each full 24-bit group encodes to four characters, and a final partial group is padded with \"=\" to four characters [RFC 4648]. 1000 bytes is 333 full groups (1332 characters) plus one leftover byte, which becomes two characters plus two \"=\" padding characters, giving 1336.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "base64 encoding output length with padding characters for input octets"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (3) The final quantum of encoding input is exactly 16 bits; here, the final unit of encoded output will be three characters followed by one \"=\" padding character."
+      },
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (2) The final quantum of encoding input is exactly 8 bits; here, the final unit of encoded output will be two characters followed by two \"=\" padding characters."
+      },
+      {
+       "rfc": 4648,
+       "text": "4. Base 64 Encoding: (1) The final quantum of encoding input is an integral multiple of 24 bits; here, the final unit of encoded output will be an integral multiple of 4 characters with no \"=\" padding."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "4 * (1000 // 3) + 4 * (1 if 1000 % 3 else 0)"
+    },
+    "result": {
+     "ok": false,
+     "tool": "run_python",
+     "error_type": "guard_rejected",
+     "message": "disallowed syntax: IfExp"
+    }
+   },
+   {
+    "turn": 2,
+    "tool": "run_python",
+    "args": {
+     "expression": "4 * (1000 // 3) + 4 * ((1000 % 3 + 2) // 3)"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 1336
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|What is the largest WebSocket payload length that can be expressed with the 16-bit extended payload length field?": {
+  "q": "What is the largest WebSocket payload length that can be expressed with the 16-bit extended payload length field?",
+  "version": "v2",
+  "answer": "The 16-bit extended payload length is a 2-byte unsigned integer [RFC 6455], so the largest value it can express is 2^16 \u2212 1 = 65535 bytes.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "WebSocket 16-bit extended payload length field range"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "5.2. Base Framing Protocol: The length of the \"Payload data\", in bytes: if 0-125, that is the payload length. If 126, the following 2 bytes interpreted as a 16-bit unsigned integer are the payload length. If 127, the following 8 bytes interpreted as a 64-bit unsigned integer (the most significant bit MUST be 0) are the payload length. Multibyte length quantities are expressed in network byte order. Note that in all cases, the minimal number of bytes MUST be used to encode the length, for example, the length of a 124-byte-long string can't be encoded as the sequence 126, 0, 124. The payload length is the length of the \"Extension data\" + the length of the \"Application data\". The length of the \"Extension data\" may be zero, in which case the payload length is the length of the \"Application data\"."
+      },
+      {
+       "rfc": 6455,
+       "text": "2. A |Host| header field containing the server's authority.: 5. A |Sec-WebSocket-Key| header field with a base64-encoded (see Section 4 of [RFC4648]) value that, when decoded, is 16 bytes in length."
+      },
+      {
+       "rfc": 6455,
+       "text": "4. Establish the following information:: /key/ The |Sec-WebSocket-Key| header field in the client's handshake includes a base64-encoded value that, if decoded, is 16 bytes in length. This (encoded) value is used in the creation of the server's handshake to indicate an acceptance of the connection. It is not necessary for the server to base64- decode the |Sec-WebSocket-Key| value."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "2**16 - 1"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 65535
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|Roughly how many years after 1970 can the UUIDv7 millisecond timestamp represent before it overflows?": {
+  "q": "Roughly how many years after 1970 can the UUIDv7 millisecond timestamp represent before it overflows?",
+  "version": "v2",
+  "answer": "The UUIDv7 timestamp is a 48-bit big-endian count of Unix Epoch milliseconds [RFC 9562]. That gives 2^48 ms \u2248 8,919.6 years of range (using 365.2425-day years), so it overflows roughly 8,920 years after 1970, around the year 10889 (computed from the RFC 9562 field width; the RFC itself does not state this figure).",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "UUIDv7 unix_ts_ms 48-bit millisecond timestamp field"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 9562,
+       "text": "3. Random data for each new UUIDv7 generated for any remaining space.: unix_ts_ms: 48-bit big-endian unsigned number of the Unix Epoch timestamp in milliseconds as per Section 6.1. Occupies bits 0 through 47 (octets 0-5)."
+      },
+      {
+       "rfc": 9562,
+       "text": "5.7. UUID Version 7: UUIDv7 values are created by allocating a Unix timestamp in milliseconds in the most significant 48 bits and filling the remaining 74 bits, excluding the required version and variant bits, with random bits for each new UUIDv7 generated to provide uniqueness as per Section 6.9. Alternatively, implementations MAY fill the 74 bits, jointly, with a combination of the following subfields, in this order from the most significant bits to the least, to guarantee additional monotonicity within a millisecond:"
+      },
+      {
+       "rfc": 9562,
+       "text": "Appendix A. Test Vectors: This example UUIDv7 test vector utilizes a well-known Unix Epoch timestamp with millisecond precision to fill the first 48 bits."
+      }
+     ]
+    }
+   },
+   {
+    "turn": 1,
+    "tool": "run_python",
+    "args": {
+     "expression": "2**48 / 1000 / 3600 / 24 / 365.2425"
+    },
+    "result": {
+     "ok": true,
+     "tool": "run_python",
+     "output": 8919.586933194816
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|What is the default TCP port for a Redis server?": {
+  "q": "What is the default TCP port for a Redis server?",
+  "version": "v2",
+  "answer": "This is not covered by the indexed RFCs.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "default TCP port for a Redis server"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "3. WebSocket URIs: The port component is OPTIONAL; the default for \"ws\" is port 80, while the default for \"wss\" is port 443."
+      },
+      {
+       "rfc": 6455,
+       "text": "1.7. Relationship to TCP and HTTP: By default, the WebSocket Protocol uses port 80 for regular WebSocket connections and port 443 for WebSocket connections tunneled over Transport Layer Security (TLS) [RFC2818]."
+      },
+      {
+       "rfc": 6455,
+       "text": "4.1. Client Requirements: If the client is not configured to use a proxy, then a direct TCP connection SHOULD be opened to the host given by /host/ and the port given by /port/."
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|How does HTTP/2 HPACK encode integers in header blocks?": {
+  "q": "How does HTTP/2 HPACK encode integers in header blocks?",
+  "version": "v2",
+  "answer": "This is not covered by the indexed RFCs.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "HPACK integer representation in HTTP/2 header block"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6455,
+       "text": "1. The handshake MUST be a valid HTTP request as specified by [RFC2616].: NOTE: As an example, if the randomly selected value was the sequence of bytes 0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08 0x09 0x0a 0x0b 0x0c 0x0d 0x0e 0x0f 0x10, the value of the header field would be \"AQIDBAUGBwgJCgsMDQ4PEC==\""
+      },
+      {
+       "rfc": 7519,
+       "text": "3.1. Example JWT: Base64url encoding the octets of the UTF-8 representation of the JOSE Header yields this encoded JOSE Header value:"
+      },
+      {
+       "rfc": 7519,
+       "text": "Appendix A. JWT Examples: Base64url encoding the octets of the UTF-8 representation of the JOSE Header yields this encoded JOSE Header value:"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "claude-haiku-5-5|v2|What is the maximum size of a single TLS 1.3 record?": {
+  "q": "What is the maximum size of a single TLS 1.3 record?",
+  "version": "v2",
+  "answer": "This is not covered by the indexed RFCs.",
+  "calls": [
+   {
+    "turn": 0,
+    "tool": "search_rfcs",
+    "args": {
+     "query": "maximum size of a TLS 1.3 record"
+    },
+    "result": {
+     "ok": true,
+     "tool": "search_rfcs",
+     "output": [
+      {
+       "rfc": 6750,
+       "text": "7.1. Normative References: [RFC5246] Dierks, T. and E. Rescorla, \"The Transport Layer Security (TLS) Protocol Version 1.2\", RFC 5246, August 2008."
+      },
+      {
+       "rfc": 6750,
+       "text": "5.2. Threat Mitigation: The authorization server MUST implement TLS. Which version(s) ought to be implemented will vary over time and will depend on the widespread deployment and known security vulnerabilities at the time of implementation. At the time of this writing, TLS version 1.2 [RFC5246] is the most recent version, but it has very limited actual deployment and might not be readily available in implementation toolkits. TLS version 1.0 [RFC2246] is the most widely deployed version and will give the broadest interoperability."
+      },
+      {
+       "rfc": 6455,
+       "text": "14.1. Normative References: [RFC5246] Dierks, T. and E. Rescorla, \"The Transport Layer Security (TLS) Protocol Version 1.2\", RFC 5246, August 2008."
+      }
+     ]
+    }
+   }
+  ]
+ }
+}
