@@ -219,3 +219,4 @@ __marimo__/
 */.tiktoken_cache/*
 */.hf_cache/*
 */rfcs/*
+*/gemini_cache.json
